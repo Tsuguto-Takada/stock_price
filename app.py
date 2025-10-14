@@ -22,24 +22,29 @@ h3 {font-size: clamp(1.1rem, 4vw, 1.25rem); font-weight: bold; color: #F8A31B; m
 .stMetricDelta {font-size: clamp(1rem, 4vw, 1.1rem); font-weight: bold;}
 hr {border-top: 1px solid #333333;}
 .stCaption {color: #A9A9A9; text-align: right;}
-[data-testid="stMultiSelect"] span[data-baseweb="tag"] {
-    background-color: #333333;
-    color: #FFFFFF;
-}
+[data-testid="stButton"] button { background-color: #333333; color: #FFFFFF; border: 1px solid #555555; }
+[data-testid="stButton"] button:hover { background-color: #4F4F4F; border-color: #888888; color: #FFFFFF; }
+
+/* --- マルチセレクト関連のスタイル --- */
+/* 選択済みタグ */
+[data-testid="stMultiSelect"] span[data-baseweb="tag"] { background-color: #333333; color: #FFFFFF; }
+/* ドロップダウンメニュー */
 [data-baseweb="popover"] ul { background-color: #1c1c1e; }
 [data-baseweb="popover"] ul li { color: #FFFFFF !important; }
 [data-baseweb="popover"] ul li:hover { background-color: #333333; }
 
-/* ★★★ ボタンのスタイルを強制 ★★★ */
-[data-testid="stButton"] button {
-    background-color: #333333;
-    color: #FFFFFF;
-    border: 1px solid #555555;
+/* ★★★ マルチセレクト本体のスタイルを強制 ★★★ */
+[data-testid="stMultiSelect"] [data-baseweb="select"] > div {
+    background-color: #1c1c1e;
+    border-color: #555555;
 }
-[data-testid="stButton"] button:hover {
-    background-color: #4F4F4F;
-    border-color: #888888;
-    color: #FFFFFF;
+/* プレースホルダー文字と入力中の文字の色 */
+[data-testid="stMultiSelect"] input {
+    color: #FFFFFF !important;
+}
+/* 選択ボックスの矢印の色 */
+[data-testid="stMultiSelect"] svg {
+    color: #A9A9A9;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -91,7 +96,6 @@ with cols[0]: st.button("横浜FG", on_click=set_selected_banks, args=(["横浜F
 with cols[1]: st.button("メガバンク", on_click=set_selected_banks, args=(MEGA_BANKS_ORDER,), use_container_width=True)
 with cols[2]: st.button("他競合", on_click=set_selected_banks, args=(COMPETITORS_ORDER,), use_container_width=True)
 with cols[3]: st.button("すべて選択", on_click=set_selected_banks, args=(ALL_BANKS_ORDER,), use_container_width=True)
-# ★★★ エラーの原因だったタイプミス (on_ck) を修正 ★★★
 with cols[4]: st.button("クリア", on_click=set_selected_banks, args=([],), use_container_width=True)
 
 selected_banks = st.multiselect(
