@@ -26,25 +26,24 @@ hr {border-top: 1px solid #333333;}
 [data-testid="stButton"] button:hover { background-color: #4F4F4F; border-color: #888888; color: #FFFFFF; }
 
 /* --- マルチセレクト関連のスタイル --- */
-/* 選択済みタグ */
 [data-testid="stMultiSelect"] span[data-baseweb="tag"] { background-color: #333333; color: #FFFFFF; }
-/* ドロップダウンメニュー */
 [data-baseweb="popover"] ul { background-color: #1c1c1e; }
 [data-baseweb="popover"] ul li { color: #FFFFFF !important; }
 [data-baseweb="popover"] ul li:hover { background-color: #333333; }
+[data-testid="stMultiSelect"] [data-baseweb="select"] > div { background-color: #1c1c1e; border-color: #555555; }
+[data-testid="stMultiSelect"] input { color: #FFFFFF !important; }
+[data-testid="stMultiSelect"] svg { color: #A9A9A9; }
 
-/* ★★★ マルチセレクト本体のスタイルを強制 ★★★ */
-[data-testid="stMultiSelect"] [data-baseweb="select"] > div {
+/* ★★★ アコーディオン（Expander）のヘッダーのスタイルを強制 ★★★ */
+[data-testid="stExpander"] summary {
     background-color: #1c1c1e;
-    border-color: #555555;
+    color: #FFFFFF;
 }
-/* プレースホルダー文字と入力中の文字の色 */
-[data-testid="stMultiSelect"] input {
-    color: #FFFFFF !important;
+[data-testid="stExpander"] summary:hover {
+    background-color: #333333;
 }
-/* 選択ボックスの矢印の色 */
-[data-testid="stMultiSelect"] svg {
-    color: #A9A9A9;
+[data-testid="stExpander"] summary svg {
+    color: #FFFFFF;
 }
 </style>
 """, unsafe_allow_html=True)
