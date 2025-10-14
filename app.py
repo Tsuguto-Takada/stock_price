@@ -3,7 +3,7 @@ import yfinance as yf
 
 # --- Streamlit ページ設定 ---
 st.set_page_config(
-    page_title="国内銀行 株価比較",
+    page_title="銀行株価ダッシュボード",
     page_icon="🇯🇵",
     layout="wide"
 )
@@ -11,22 +11,20 @@ st.set_page_config(
 # --- Bloomberg風カスタムCSS ---
 st.markdown("""
 <style>
-/* ... (基本CSSは同じ) ... */
+/* ... (CSSは変更ありません) ... */
 [data-testid="stAppViewContainer"], body { background-color: #000000; color: #FFFFFF; }
 html, body, [class*="st-"], [data-testid="stText"] { color: #FFFFFF; }
 .main .block-container {padding-top: 1.5rem; padding-bottom: 2rem; padding-left: 1rem; padding-right: 1rem;}
-h1 {font-size: clamp(1.8rem, 5vw, 2.5rem); font-weight: bold; color: #F8A31B;}
+h1 {font-size: clamp(1.6rem, 7vw, 2.2rem); font-weight: bold; color: #F8A31B;}
 h3 {font-size: clamp(1.1rem, 4vw, 1.25rem); font-weight: bold; color: #F8A31B; margin-bottom: -10px;}
 .stMetricLabel {color: #A9A9A9; font-size: 1rem;}
 .stMetricValue {font-size: clamp(1.8rem, 7vw, 2.2rem); font-weight: bold; color: #FFFFFF;}
 .stMetricDelta {font-size: clamp(1rem, 4vw, 1.1rem); font-weight: bold;}
 hr {border-top: 1px solid #333333;}
 .stCaption {color: #A9A9A9; text-align: right;}
-
-/* ★★★ マルチセレクトの選択済みタグの色をダークグレーに変更 ★★★ */
 [data-testid="stMultiSelect"] span[data-baseweb="tag"] {
-    background-color: #333333; /* 背景色をダークグレーに */
-    color: #FFFFFF; /* 文字色を白に */
+    background-color: #333333;
+    color: #FFFFFF;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -57,13 +55,14 @@ def get_stock_data(ticker_symbol):
         return None, None
 
 def format_market_cap(cap):
-    if not isinstance(cap, (int, float)) or cap == 0: return "NA"
+    if not isinstance(cap, (int, float)) or cap == 0: return "N/A"
     trillion = 1_000_000_000_000
     value_in_trillion = cap / trillion
     return f"{value_in_trillion:.2f} 兆円"
 
 # --- アプリケーション本体 ---
-st.title('国内銀行 株価比較')
+# ★★★ タイトルを変更 ★★★
+st.title('銀行株価ダッシュボード')
 st.markdown('---')
 
 # --- 選択UI ---
