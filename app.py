@@ -15,7 +15,12 @@ st.markdown("""
 [data-testid="stAppViewContainer"], body { background-color: #000000; color: #FFFFFF; }
 html, body, [class*="st-"], [data-testid="stText"] { color: #FFFFFF; }
 .main .block-container {padding-top: 1.5rem; padding-bottom: 2rem; padding-left: 1rem; padding-right: 1rem;}
-h1 {font-size: clamp(1.6rem, 7vw, 2.2rem); font-weight: bold; color: #F8A31B;}
+h1 {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+    font-weight: bold;
+    color: #F8A31B;
+    line-height: 1.2;
+}
 h3 {font-size: clamp(1.1rem, 4vw, 1.25rem); font-weight: bold; color: #F8A31B; margin-bottom: -10px;}
 .stMetricLabel {color: #A9A9A9; font-size: 1rem;}
 .stMetricValue {font-size: clamp(1.8rem, 7vw, 2.2rem); font-weight: bold; color: #FFFFFF;}
@@ -61,8 +66,8 @@ def format_market_cap(cap):
     return f"{value_in_trillion:.2f} 兆円"
 
 # --- アプリケーション本体 ---
-# ★★★ タイトルを変更 ★★★
-st.title('銀行株価ダッシュボード')
+# ★★★ st.titleからst.markdownに変更 ★★★
+st.markdown('<h1>銀行株価<br>ダッシュボード</h1>', unsafe_allow_html=True)
 st.markdown('---')
 
 # --- 選択UI ---
