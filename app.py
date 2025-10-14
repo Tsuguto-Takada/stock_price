@@ -26,19 +26,20 @@ hr {border-top: 1px solid #333333;}
     background-color: #333333;
     color: #FFFFFF;
 }
+[data-baseweb="popover"] ul { background-color: #1c1c1e; }
+[data-baseweb="popover"] ul li { color: #FFFFFF !important; }
+[data-baseweb="popover"] ul li:hover { background-color: #333333; }
 
-/* ★★★ マルチセレクトのドロップダウンメニューのスタイルを強制 ★★★ */
-/* ドロップダウン全体の背景 */
-[data-baseweb="popover"] ul {
-    background-color: #1c1c1e;
-}
-/* ドロップダウンの各選択肢の文字色 */
-[data-baseweb="popover"] ul li {
-    color: #FFFFFF !important;
-}
-/* マウスを乗せた時の選択肢の背景色 */
-[data-baseweb="popover"] ul li:hover {
+/* ★★★ ボタンのスタイルを強制 ★★★ */
+[data-testid="stButton"] button {
     background-color: #333333;
+    color: #FFFFFF;
+    border: 1px solid #555555;
+}
+[data-testid="stButton"] button:hover {
+    background-color: #4F4F4F;
+    border-color: #888888;
+    color: #FFFFFF;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -90,7 +91,8 @@ with cols[0]: st.button("横浜FG", on_click=set_selected_banks, args=(["横浜F
 with cols[1]: st.button("メガバンク", on_click=set_selected_banks, args=(MEGA_BANKS_ORDER,), use_container_width=True)
 with cols[2]: st.button("他競合", on_click=set_selected_banks, args=(COMPETITORS_ORDER,), use_container_width=True)
 with cols[3]: st.button("すべて選択", on_click=set_selected_banks, args=(ALL_BANKS_ORDER,), use_container_width=True)
-with cols[4]: st.button("クリア", on_ck=set_selected_banks, args=([],), use_container_width=True)
+# ★★★ エラーの原因だったタイプミス (on_ck) を修正 ★★★
+with cols[4]: st.button("クリア", on_click=set_selected_banks, args=([],), use_container_width=True)
 
 selected_banks = st.multiselect(
     '比較したい銀行を選択してください',
