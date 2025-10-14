@@ -3,7 +3,7 @@ import yfinance as yf
 
 # --- Streamlit ページ設定 ---
 st.set_page_config(
-    page_title="銀行株価ダッシュボード",
+    page_title="Stock Price Dashboard",
     page_icon="🇯🇵",
     layout="wide"
 )
@@ -44,8 +44,8 @@ ALL_BANKS_ORDER = COMPETITORS_ORDER + MEGA_BANKS_ORDER
 BANK_TICKERS = {
     "横浜FG": "7186.T", "千葉銀行": "8331.T", "しずおかFG": "5831.T",
     "ふくおかFG": "8354.T", "あおぞら銀行": "8304.T", "きらぼしFG": "7173.T",
-    "りそなHD": "8308.T", "三井住友トラスト": "8309.T", "三菱UFJ (MUFG)": "8306.T",
-    "三井住友 (SMFG)": "8316.T", "みずほ (Mizuho)": "8411.T"
+    "りそなHD": "8308.T", "三井住友トラスト": "8309.T", "MUFG": "8306.T",
+    "SMFG": "8316.T", "みずほ": "8411.T"
 }
 
 # --- データ取得・処理を行う関数 ---
@@ -67,7 +67,7 @@ def format_market_cap(cap):
 
 # --- アプリケーション本体 ---
 # ★★★ st.titleからst.markdownに変更 ★★★
-st.markdown('<h1>銀行株価<br>ダッシュボード</h1>', unsafe_allow_html=True)
+st.markdown('<h1>Japanese Banking Sector<br>Dashboard</h1>', unsafe_allow_html=True)
 st.markdown('---')
 
 # --- 選択UI ---
