@@ -11,16 +11,11 @@ st.set_page_config(
 # --- Bloomberg風カスタムCSS ---
 st.markdown("""
 <style>
-/* ... (CSSは変更ありません) ... */
+/* ... (基本CSS) ... */
 [data-testid="stAppViewContainer"], body { background-color: #000000; color: #FFFFFF; }
 html, body, [class*="st-"], [data-testid="stText"] { color: #FFFFFF; }
 .main .block-container {padding-top: 1.5rem; padding-bottom: 2rem; padding-left: 1rem; padding-right: 1rem;}
-h1 {
-    font-size: clamp(1.6rem, 7vw, 2.2rem);
-    font-weight: bold;
-    color: #F8A31B;
-    line-height: 1.2;
-}
+h1 {font-size: clamp(1.6rem, 7vw, 2.2rem); font-weight: bold; color: #F8A31B; line-height: 1.2;}
 h3 {font-size: clamp(1.1rem, 4vw, 1.25rem); font-weight: bold; color: #F8A31B; margin-bottom: -10px;}
 .stMetricLabel {color: #A9A9A9; font-size: 1rem;}
 .stMetricValue {font-size: clamp(1.8rem, 7vw, 2.2rem); font-weight: bold; color: #FFFFFF;}
@@ -30,6 +25,20 @@ hr {border-top: 1px solid #333333;}
 [data-testid="stMultiSelect"] span[data-baseweb="tag"] {
     background-color: #333333;
     color: #FFFFFF;
+}
+
+/* ★★★ マルチセレクトのドロップダウンメニューのスタイルを強制 ★★★ */
+/* ドロップダウン全体の背景 */
+[data-baseweb="popover"] ul {
+    background-color: #1c1c1e;
+}
+/* ドロップダウンの各選択肢の文字色 */
+[data-baseweb="popover"] ul li {
+    color: #FFFFFF !important;
+}
+/* マウスを乗せた時の選択肢の背景色 */
+[data-baseweb="popover"] ul li:hover {
+    background-color: #333333;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -81,7 +90,7 @@ with cols[0]: st.button("横浜FG", on_click=set_selected_banks, args=(["横浜F
 with cols[1]: st.button("メガバンク", on_click=set_selected_banks, args=(MEGA_BANKS_ORDER,), use_container_width=True)
 with cols[2]: st.button("他競合", on_click=set_selected_banks, args=(COMPETITORS_ORDER,), use_container_width=True)
 with cols[3]: st.button("すべて選択", on_click=set_selected_banks, args=(ALL_BANKS_ORDER,), use_container_width=True)
-with cols[4]: st.button("クリア", on_click=set_selected_banks, args=([],), use_container_width=True)
+with cols[4]: st.button("クリア", on_ck=set_selected_banks, args=([],), use_container_width=True)
 
 selected_banks = st.multiselect(
     '比較したい銀行を選択してください',
